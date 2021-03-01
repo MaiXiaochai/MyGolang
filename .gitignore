@@ -178,7 +178,6 @@ speed-measure-plugin*.json
 *.exe
 *.exe~
 *.dll
-*.so
 *.dylib
 
 # Test binary, built with `go test -c`
@@ -189,3 +188,7 @@ speed-measure-plugin*.json
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+
+
+# MindManager
+*.~$lock
