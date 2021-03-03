@@ -68,6 +68,21 @@ func printDoubleNineTable() {
 	}
 }
 
+// goto，跳出多层循环案例
+func printDoubleNineTableGoto() {
+	for i := 1; i < 10; i++ {
+		for j := 1; j <= i; j++ {
+			fmt.Printf("%d %s %d %s %d \t", j, "X", i, "=", j*i)
+			if j == 2 {
+				goto XX
+			}
+		}
+		fmt.Println()
+	}
+	XX:
+		fmt.Println("跳出多层循环了")
+}
+
 func main() {
-	printDoubleNineTable()
+	printDoubleNineTableGoto()
 }
