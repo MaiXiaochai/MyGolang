@@ -41,4 +41,16 @@ func main() {
 	for _, c := range s4 {
 		fmt.Printf("%c\n", c)
 	}
+
+	// 字符串修改
+	s5 := "水果"
+	s51 := []rune(s5) // 把字符串强制转换成一个rune切片
+	s51[0] = '苹'
+	fmt.Println(string(s51)) // 把rune切片强制转换成字符串
+
+	// 类型转换
+	n1 := 10 // int
+	var f float64
+	f = float64(n1)
+	fmt.Printf("%T", f)
 }
