@@ -82,8 +82,55 @@ func sliceAppend() {
 	s1 = append(s1, "闪电侠")
 	fmt.Printf("s1 after: %v, len: %d, cap: %d\n", s1, len(s1), cap(s1))
 	// s1 after: [蜘蛛侠 钢铁侠 蝙蝠侠 闪电侠], len: 4, cap: 6
+
+	s2 := []string{"神奇女侠", "神奇四侠", "绿灯侠"}
+	s1 = append(s1, s2...)
+	fmt.Printf("s1 append s2: %v, len: %d, cap: %d\n", s1, len(s1), cap(s1))
+	// s1 append s2: [蜘蛛侠 钢铁侠 蝙蝠侠 闪电侠 神奇女侠 神奇四侠 绿灯侠], len: 7, cap: 12
+}
+
+// 切片拷贝
+func sliceCopy() {
+	s1 := []int{1, 3, 5}
+	s2 := s1 //赋值
+
+	// var s3 []int 这样声明是nil，没有内存空间
+	s3 := make([]int, 3, 3) // 做一个有内存的slice
+	copy(s3, s1)            // copy
+
+	s2[0] = 10
+
+	fmt.Println(s1)
+	fmt.Println(s2)
+	fmt.Println(s3)
+}
+
+// 删除切片中的元素
+func delSliceCell() {
+	// 删除s1中索引为1的元素，用 append函数曲线救国
+	a1 := [...]int{1, 2, 3, 4, 5}
+	s1 := a1[:] // [1 2 3 4]
+
+	//s1 = append(s1[:1], s1[2:3]...) // [1 3 3 4 5]
+	s1 = append(s1[:1], s1[2:]...)
+
+	fmt.Println("切片 after：", s1)  // [1 3 4 5]
+	fmt.Println("数组：", a1)        // [1 3 4 5 5]
+	fmt.Println("s1容量：", cap(s1)) // 4
+
+}
+
+func slicePractice() {
+	a := make([]int, 5, 10)
+	fmt.Println(a) // [0 0 0 0 0]
+
+	for i := 0; i < 10; i++ {
+		a = append(a, i)
+	}
+
+	fmt.Println(a) // [0 0 0 0 0 0 1 2 3 4 5 6 7 8 9]
 }
 
 func main() {
-	sliceAppend()
+	slicePractice()
 }
