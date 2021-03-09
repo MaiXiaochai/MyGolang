@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math/rand"
 	"sort"
+	"strings"
 	"time"
 )
 
@@ -99,6 +100,27 @@ func mapSlice() {
 	fmt.Println(s2) // map[hello:[100 20 30]]
 }
 
+// 统计单词出现次数
+func countWords(words string) {
+	s := strings.Split(words, " ")
+	m := make(map[string]int, len(s))
+
+	fmt.Printf("%v, %T, %v", m, m, len(m))
+
+	for _, nbr := range s {
+		if _, ok := m[nbr]; !ok {
+			m[nbr] = 1
+		} else {
+			m[nbr]++
+		}
+	}
+	for k, v := range m {
+		fmt.Printf("%v: %v\n", k, v)
+	}
+}
+
 func main() {
-	mapSlice()
+	//mapSlice()
+	words := "hello python, python go"
+	countWords(words)
 }
