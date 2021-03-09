@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"unicode"
+)
 
 // 流程控制
 
@@ -79,10 +82,26 @@ func printDoubleNineTableGoto() {
 		}
 		fmt.Println()
 	}
-	XX:
-		fmt.Println("跳出多层循环了")
+XX:
+	fmt.Println("跳出多层循环了")
+}
+
+// 判断字符串中的汉字个数
+func judgeHan(hans string) int {
+	counter := 0
+	for _, c := range hans {
+		// 打印每个字符串
+		fmt.Printf("%c\n", c)
+		if unicode.Is(unicode.Han, c) {
+			counter++
+		}
+	}
+
+	return counter
 }
 
 func main() {
-	printDoubleNineTableGoto()
+	words := "maixiaochai,加油！"
+	number := judgeHan(words)
+	fmt.Println(number)
 }
