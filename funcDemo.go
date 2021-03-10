@@ -33,8 +33,35 @@ func mySumPlus(x string, y ...int) string {
 	return fmt.Sprintf("%s: %T, %v", x, y, y)
 }
 
+// 判断是否是回文
+func judgePlalindrome(words string) {
+	fmt.Println(len(words)) // 27
+
+	// 把字符串拿出来，放到一个[]rune中
+	r := make([]rune, 0, len(words))
+	for _, c := range words {
+		r = append(r, c)
+	}
+	fmt.Println(r) // [19978 28023 33258 26469 27700 26469 33258 28023 19978]
+
+	for i := 0; i < len(r)/2; i++ {
+		if r[i] != r[len(r)-1-i] {
+			fmt.Println("不是回文")
+			return
+		}
+	}
+	fmt.Println("是回文")
+}
+
+// defer
+func show() {
+	fmt.Println(1)
+	defer fmt.Println(2)
+	defer fmt.Println(3)
+	defer fmt.Println(4)
+	// Out: 1 4 3 2
+}
+
 func main() {
-	//r1, r2 := mySum5(1, 2, 3, "mai", "xiao", "chai")
-	result := mySumPlus("maixiaochai", 1, 2, 3)
-	fmt.Println(result)
+	show()
 }
