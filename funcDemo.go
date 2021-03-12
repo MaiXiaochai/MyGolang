@@ -62,6 +62,22 @@ func show() {
 	// Out: 1 4 3 2
 }
 
+// 匿名函数
+var fn = func(x, y int) {
+	fmt.Println(x + y)
+
+	// 如果只是调用一次的函数，还可以简写成立即执行函数
+	func() {
+		fmt.Println("立即执行函数")
+	}()
+
+	// 立即执行函数，带参数
+	func(x string) {
+		fmt.Printf("立即执行函数, %s\n", x)
+	}("done.")
+
+}
+
 func main() {
-	show()
+	fn(1, 2)
 }
