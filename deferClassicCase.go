@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 // defer 经典理解题目
 // 含有defer和return的函数的执行过程
 // 	1. 返回值=x
@@ -36,6 +38,24 @@ func f4() (x int) { // 1.返回值 = x,申请了内存，未赋值
 	return 5 // 1.2 返回值 = x = 5，内存上赋了值
 }
 
-func main() {
-
+// defer 案例2(包含main内部)
+func calc(index string, a, b int) int {
+	ret := a + b
+	fmt.Println(index, a, b, ret)
+	return ret
 }
+
+func main() {
+	a := 1
+	b := 2
+	defer calc("1", a, calc("10", a, b))
+	a = 0
+	defer calc("2", a, calc("20", a, b))
+	b = 1
+}
+
+//执行过程
+// 1. 遇到第一个defer,先算出defer后跟的函数的内部的函数，使得defer后边的函数为一层函数, 10 1 2 3
+// 2. a = 0, 同上理，20 0 2 2
+// 3. b = 1, 执行倒数第一个defer后跟的语句, 2 0 2 2
+// 4. 1 1 3 3
